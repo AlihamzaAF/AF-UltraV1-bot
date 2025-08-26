@@ -1,0 +1,28 @@
+{
+  "botName": "AF Ultra Power V1",
+  "ownerName": "Ali Hamza",
+  "ownerNumber": "92324400530",
+  "prefix": ".",
+  "sessionName": "af-ultra-session",
+  "autoTyping": false,
+  "autoRecording": false,
+  "autoReact": false,
+  "autoViewStatus": false,
+  "antiLink": false,
+  "selfMode": false,
+  "channel": "https://whatsapp.com/channel/0029VaU5UfBBVJl2sqYwbJ1t",
+  "developer": "Ali Hamza",
+  "poweredBy": "AF Cyber Force",
+  "version": "1.0.0",
+  "premiumUsers": [],
+  "blockedUsers": [],
+  "groupSettings": {
+    "antiLink": false,
+    "welcome": true,
+    "goodbye": true
+  },
+  "apiKeys": {
+    "youtube": "YOUR_YOUTUBE_API_KEY"
+  }
+}
+
