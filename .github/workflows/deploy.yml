@@ -1,53 +1,33 @@
-name: AF Ultra Power V1 - 24/7 Deploy
+name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '0 */6 * * *'  # Restart every 6 hours to keep alive
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build:
+
     runs-on: ubuntu-latest
-    
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
     steps:
-    - name: Checkout Repository
+    - name: Checkout repository
       uses: actions/checkout@v3
-      
-    - name: Setup Node.js
+
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install Dependencies
-      run: |
-        npm install
-        
-    - name: Create Auth Directory
-      run: |
-        mkdir -p auth_info_baileys
-        
-    - name: Setup Environment
-      run: |
-        echo "Setting up environment variables..."
-        # Add any environment setup here
-        
-    - name: Start Bot
-      env:
-        OWNER_NUMBER: ${{ secrets.OWNER_NUMBER }}
-        BOT_NAME: ${{ secrets.BOT_NAME }}
-        SESSION_ID: ${{ secrets.SESSION_ID }}
-      run: |
-        echo "🚀 Starting AF Ultra Power V1 Bot..."
-        echo "👑 Developed By: Ali Hamza"
-        echo "⚡ Powered By: AF Cyber Force"
-        timeout 21600 npm start || echo "Bot session completed"
-        
-    - name: Keep Alive
-      run: |
-        echo "🔄 Keeping deployment alive..."
-        sleep 10
+        node-version: ${{ matrix.node-version }}
 
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start application
+      run: npm start
